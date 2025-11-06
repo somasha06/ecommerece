@@ -1,0 +1,46 @@
+{% extends "admin/adminbase.html" %}
+
+
+{% block content %}
+
+<div class="flex flex-1 justify-between items-center ">
+    <h2 class="text-2xl font-semibold">Manage Products</h2>
+    <a href="{% url 'insertproduct' %}" class="bg-green-600 text-white px-3 py-2 rounded">Insert Product</a>
+</div>
+    <table class="w-full mt-5">
+        <thead>
+            <tr>
+                <td class="p-3 border">ID</td>
+                <td class="p-3 border">Title</td>
+                <td class="p-3 border">Brand</td>
+                <td class="p-3 border">Category</td>
+                <td class="p-3 border">Image</td>
+                <td class="p-3 border">Price</td>
+                <td class="p-3 border">Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td class="p-3 border">{{forloop.counter}}</td>
+                <td class="p-3 border">{{product.title}}</td>
+                <td class="p-3 border">{{product.brand}}</td>
+                <td class="p-3 border">{{product.category}}</td>
+                <td class="p-3 border">
+                    <img src="{{product.image.url}}" width="100px" alt="">
+                </td>
+                <td class="p-3 border"><del>{{product.price}}</del>  {{product.discount_price}}</td>
+                <td class="p-3 border">
+                    <div class="flex gap-1">
+                        <a href="{% url 'deleteproduct' product.id %}" class="bg-red-600 hover:bg-red-700 text-white rounded text-sm px-3 py-2">Delete</a>
+                        <a href="{% url 'editproduct' product.id %}" class="bg-blue-600 hover:bg-blue-700 text-white rounded text-sm px-3 py-2">Edit</a>
+                        <a href="" class="bg-green-600 hover:bg-green-700 text-white rounded text-sm px-3 py-2">View</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

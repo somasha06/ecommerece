@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="flex flex-1 mt-8">
+    {% for category in categories %}
+    <div class="px-[10%]">
+        <div class="bg-amber-700 font-semibold text-orange-100 px-3 py-2 rounded-lg hover:shadow-lg hover:cursor-pointer">
+            <h2>{{category.name}}</h2>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+
+<section class="flex flex-1 mt-8">
+    <div class="grid grid-cols-5 gap-5 px-[10%]">
+        {% for product in products %}
+        <a href="">
+            <div class="bg-orange-200 rounded-lg hover:cursor-pointer">
+                <img src="{{product.image.url}}" class="w-full rounded-t-lg border-black" alt="">
+                <div class="p-2 text-center">
+                    <h2 class="font-bold truncate">{{product.title}}</h2>
+                    <h2 class="text-sm">Brand: {{product.brand}}</h2>
+                    <h2 class="font-bold"><del class="text-black-400">{{product.price}}</del> {{product.discount_price}}</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
